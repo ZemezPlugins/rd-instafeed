@@ -1,7 +1,7 @@
 ###*
  * @module       jQuery RD Instafeed
  * @author       Rafael Shayvolodyan(raffa)
- * @version      1.0.0
+ * @version      1.0.1
 ###
 (($, document, window) ->
 
@@ -257,7 +257,7 @@
             value = json
 
             for tmp in valueArr
-              if tmp is 'data' && value[tmp][index]?
+              if tmp is 'data' && value[tmp]? && value[tmp][index]?
                 value = value[tmp][index]
               else
                 value = value[tmp]
@@ -289,7 +289,9 @@
                   if valueIndex is 'type' && temp isnt 'image'
                     el.setAttribute(attr, 'iframe')
                   else
-                    el.setAttribute(attr, temp)
+                    c = attr.charAt(0)
+                    if !(c >= '0' && c <= '9')
+                      el.setAttribute(attr, temp)
       return
 
     ###*

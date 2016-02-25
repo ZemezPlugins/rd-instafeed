@@ -1,7 +1,7 @@
 /**
  * @module       jQuery RD Instafeed
  * @author       Rafael Shayvolodyan(raffa)
- * @version      1.0.0
+ * @version      1.0.1
  */
 
 (function() {
@@ -286,7 +286,7 @@
        */
 
       RDInstafeed.prototype.parseAttributes = function(el, json, index) {
-        var attr, attributes, dataArr, dataEl, date, j, k, len, len1, temp, tmp, value, valueArr, valueIndex;
+        var attr, attributes, c, dataArr, dataEl, date, j, k, len, len1, temp, tmp, value, valueArr, valueIndex;
         dataArr = el.attributes;
         for (dataEl in dataArr) {
           if ((dataArr[dataEl] != null) && typeof dataArr[dataEl] === 'object' && dataArr[dataEl].name.indexOf('data-') !== -1 && dataArr[dataEl].name.indexOf('data-instafeed-') === -1) {
@@ -297,7 +297,7 @@
               value = json;
               for (j = 0, len = valueArr.length; j < len; j++) {
                 tmp = valueArr[j];
-                if (tmp === 'data' && (value[tmp][index] != null)) {
+                if (tmp === 'data' && (value[tmp] != null) && (value[tmp][index] != null)) {
                   value = value[tmp][index];
                 } else {
                   value = value[tmp];
@@ -330,7 +330,10 @@
                     if (valueIndex === 'type' && temp !== 'image') {
                       el.setAttribute(attr, 'iframe');
                     } else {
-                      el.setAttribute(attr, temp);
+                      c = attr.charAt(0);
+                      if (!(c >= '0' && c <= '9')) {
+                        el.setAttribute(attr, temp);
+                      }
                     }
                   }
                 }
