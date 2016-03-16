@@ -1,7 +1,7 @@
 /**
  * @module       jQuery RD Instafeed
  * @author       Rafael Shayvolodyan(raffa)
- * @version      1.0.1
+ * @version      1.0.2
  */
 
 (function() {
@@ -299,8 +299,10 @@
                 tmp = valueArr[j];
                 if (tmp === 'data' && (value[tmp] != null) && (value[tmp][index] != null)) {
                   value = value[tmp][index];
-                } else {
+                } else if (value[tmp] != null) {
                   value = value[tmp];
+                } else {
+                  continue;
                 }
               }
             }

@@ -1,7 +1,7 @@
 ###*
  * @module       jQuery RD Instafeed
  * @author       Rafael Shayvolodyan(raffa)
- * @version      1.0.1
+ * @version      1.0.2
 ###
 (($, document, window) ->
 
@@ -259,9 +259,10 @@
             for tmp in valueArr
               if tmp is 'data' && value[tmp]? && value[tmp][index]?
                 value = value[tmp][index]
-              else
+              else if value[tmp]?
                 value = value[tmp]
-
+              else
+                continue
 
           if typeof dataArr[dataEl].value is 'string'
             attributes = dataArr[dataEl].value.split(/\s?,\s?/i);
