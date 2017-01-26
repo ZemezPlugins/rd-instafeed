@@ -15,7 +15,7 @@
 
 <p>
     Для начала необходимо скачать данный скрипт из нашего публичного репозитория:
-    <a href="http://products.git.devoffice.com/coding-development/rd-instafeed.git">Кликабельно</a>
+    <a href="https://github.com/TemplatemonsterPlugins/rd-instafeed">Кликабельно</a>
 </p>
 
 
@@ -30,7 +30,7 @@
 <code>
 <pre>
 &lt;!-- RD Instafeed --&gt;
-&lt;section class="instafeed" data-instafeed-clientid="44f19408f04040bd85214315861a84a1" data-instafeed-get="user" data-instafeed-user="1507096244"&gt;
+&lt;section class="instafeed" data-instafeed-accesstoken="********.*******.*********************************" data-instafeed-clientid="*********************************" data-instafeed-get="user" data-instafeed-user="**********"&gt;
   &lt;div data-instafeed-item&gt;
     &lt;img src="images/_blank.png" alt="" data-images-low_resolution-url="src" /&gt;
   &lt;/div&gt;
@@ -41,6 +41,32 @@
 
 <p>
     <strong>Обратите внимание:</strong> разметка внутри данного блока может быть произвольной, включая элементы сетки и т.д. Необходимо только наличие элемента с атрибутом data-instafeed-item.
+</p>
+
+
+<h3>
+    Инструкция получения <strong>access_token</strong>
+</h3>
+
+<p><a target="blank" href="https://elfsight.com/blog/2016/05/how-to-get-instagram-access-token/">Ссылка на инструкцию</a></p>
+
+<img src="img/img-1.jpg">
+
+<p>Полученую строку необходимо вставить в html атрибут - <strong>data-instafeed-accesstoken</strong> </p>
+<p>Строка состоит из 3 частей разделенных точкой</p>
+
+<ul class='marked-list'>
+    <li>
+        <p>1 часть строки необходимо вставить в <strong>data-instafeed-user</strong></p>
+    </li>
+    <li>
+        <p>3 часть строки вставить в <strong>data-instafeed-clientid</strong></p> 
+    </li>
+</ul>
+
+
+<p>
+    <strong>Обратите внимание:</strong> после обновление Instagram API мы можем выводить контент только с своего аккаунта(с аккаунта к которому есть доступ).
 </p>
 
 <h3>

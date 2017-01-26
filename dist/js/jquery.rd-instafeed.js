@@ -1,7 +1,7 @@
 /**
  * @module       jQuery RD Instafeed
  * @author       Rafael Shayvolodyan(raffa)
- * @version      1.0.2
+ * @version      1.1.0
  */
 
 (function() {
@@ -22,12 +22,12 @@
        * @public
        */
       RDInstafeed.prototype.Defaults = {
-        accessToken: '',
-        clientId: '',
+        accessToken: '3229350923.6c2a967.f972dab346c046f89bb2c0ddb7e8da78',
+        clientId: 'f972dab346c046f89bb2c0ddb7e8da78',
         get: 'user',
         tagName: 'awesome',
-        userId: '499522078',
-        locatioId: '',
+        userId: '3229350923',
+        locationId: '',
         sortBy: 'most-recent',
         useHttp: false,
         showLog: 'false',
@@ -87,29 +87,53 @@
           cache: false,
           url: url,
           success: function(response) {
-            var images, parsedLimit, showLog;
+            var images, imagesRequested, showLog;
             if (imageArr != null) {
               images = imageArr;
               images.push.apply(images, response.data);
             } else {
               images = response.data;
             }
+
+            //console.log(response);
+
             if (response.pagination != null) {
               ctx.nextUrl = response.pagination.next_url;
             }
+
             if (get !== 'profile') {
-              parsedLimit = parseInt(ctx.$items.length, 10);
-              if (images.length > parsedLimit) {
+
+              imagesRequested = parseInt(ctx.$items.length, 10);
+
+              if (images.length >= imagesRequested) {
                 images = ctx.sorting(ctx, images);
-                images = images.slice(0, parsedLimit);
+                images = images.slice(0, imagesRequested);
                 ctx.validate(ctx, response);
                 showLog = ctx.element.getAttribute('data-instafeed-showlog') ? ctx.element.getAttribute('data-instafeed-showlog') : ctx.options.showLog;
                 if (showLog === 'true') {
                   console.log(images);
                 }
+
                 return ctx.loopData(images);
               } else if (ctx.nextUrl != null) {
                 return ctx.fetchData(ctx, response.pagination.next_url, images);
+              } else {
+
+                if ( images.length <  imagesRequested) {
+                  while( images.length != imagesRequested ){
+                    for ( var qew in images ) {
+                      if ( images.length <  imagesRequested) {
+                        images.push( images[qew] );
+                      } else {
+                        break;
+                      }
+                    }
+                  }
+                }
+
+                images = ctx.sorting(ctx, images);
+                ctx.validate(ctx, response);
+                return ctx.loopData(images);
               }
             } else {
               ctx.validate(ctx, response);
@@ -509,6 +533,7 @@
         url = base + "/" + endpoint;
         access = this.element.getAttribute('data-instafeed-accesstoken') ? this.element.getAttribute('data-instafeed-accesstoken') : this.options.accessToken;
         clientId = this.element.getAttribute('data-instafeed-clientid') ? this.element.getAttribute('data-instafeed-clientid') : this.options.clientId;
+
         if (!!access) {
           url += "?access_token=" + access;
         } else {
@@ -517,6 +542,7 @@
         if (this.$items.length && get !== "profile") {
           url += "&count=" + this.$items.length;
         }
+        console.log(url);
         url += "&callback=instafeedCache" + this.unique + ".parse";
         return url;
       };

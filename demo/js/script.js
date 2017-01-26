@@ -169,7 +169,7 @@ function isIE() {
 (function ($) {
     var o = $('.instafeed');
     if (o.length) {
-        include('../dist/js/jquery.rd-instafeed.min.js');
+        include('../dist/js/jquery.rd-instafeed.js');
 
         $(document).ready(function () {
             o.each(function () {
