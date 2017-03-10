@@ -22,8 +22,8 @@
        * @public
        */
       RDInstafeed.prototype.Defaults = {
-        accessToken: '3229350923.6c2a967.f972dab346c046f89bb2c0ddb7e8da78',
-        clientId: 'f972dab346c046f89bb2c0ddb7e8da78',
+        accessToken: '3229350923.ba4c844.4f02100c368f4df7a4139183800edf26',
+        clientId: '641b85f46ee943acb06c8180f7e522f7',
         get: 'user',
         tagName: 'awesome',
         userId: '3229350923',
@@ -94,8 +94,6 @@
             } else {
               images = response.data;
             }
-
-            //console.log(response);
 
             if (response.pagination != null) {
               ctx.nextUrl = response.pagination.next_url;
@@ -256,8 +254,8 @@
                 indexes.locations++;
                 return;
               }
+
               if (ctx.checkAttribute(this, 'data-comments-data')) {
-                ctx.parseAttributes(this, data[i], indexes.comments);
               } else if (ctx.checkAttribute(this, 'data-likes-data')) {
                 ctx.parseAttributes(this, data[i], indexes.likes);
               } else if (ctx.checkAttribute(this, 'data-locations-data')) {
@@ -496,9 +494,6 @@
         base = "https://api.instagram.com/v1";
         get = this.element.getAttribute('data-instafeed-get') ? this.element.getAttribute('data-instafeed-get') : this.options.get;
         switch (get) {
-          case "popular":
-            endpoint = "media/popular";
-            break;
           case "tagged":
             tagName = this.element.getAttribute('data-instafeed-tagname') ? this.element.getAttribute('data-instafeed-tagname') : this.options.tagName;
             if (!tagName) {
@@ -542,7 +537,6 @@
         if (this.$items.length && get !== "profile") {
           url += "&count=" + this.$items.length;
         }
-        console.log(url);
         url += "&callback=instafeedCache" + this.unique + ".parse";
         return url;
       };

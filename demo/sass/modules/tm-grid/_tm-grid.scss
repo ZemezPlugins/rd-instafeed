@@ -135,11 +135,11 @@ html.lt-ie10 {
 }
 
 
-
-
-
-
-
-
+@media (min-width: 1200px) and (max-width: 1799px) {
+  .row > .col-lg-6{
+        flex-basis: 33%;
+    max-width: 33%;
+  }
+}
 
 

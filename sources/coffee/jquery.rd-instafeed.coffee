@@ -19,11 +19,11 @@
      * @public
     ###
     Defaults:
-      accessToken: '',
-      clientId: '',
+      accessToken: '3229350923.ba4c844.4f02100c368f4df7a4139183800edf26',
+      clientId: '641b85f46ee943acb06c8180f7e522f7',
       get: 'user',
       tagName: 'awesome',
-      userId: '499522078',
+      userId: '3229350923',
       locatioId: '',
       sortBy: 'most-recent',
       useHttp: false,
@@ -398,8 +398,6 @@
       get = if @.element.getAttribute('data-instafeed-get') then @.element.getAttribute('data-instafeed-get') else @options.get
 
       switch get
-        when "popular" then endpoint = "media/popular"
-
         when "tagged"
           tagName = if @.element.getAttribute('data-instafeed-tagname') then @.element.getAttribute('data-instafeed-tagname') else @options.tagName
 

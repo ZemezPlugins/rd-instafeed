@@ -17,13 +17,23 @@
     </li>
     <li>
         Сам скрипт доступен в нашем публичном репозитории:
-        <a href='http://products.git.devoffice.com/coding-development/rd-instafeed.git'>Git</a>
+        <a href='https://github.com/TemplatemonsterPlugins/rd-instafeed'>Git</a>
     </li>
 </ul>
 
 <h3>Список изменений</h3>
 
 <ul class="marked-list">
+    <li>
+        <dl class="inline-term">
+            <dt>
+                09.03.2017
+            </dt>
+            <dd>
+                Версия 1.2.0. Скрипт доработан в соответствии с требованиями
+            </dd>
+        </dl>
+    </li>
     <li>
         <dl class="inline-term">
             <dt>

@@ -83,7 +83,7 @@ if (!isset($sections)) {
                 CONTENT
             =========================================================-->
             <main id="main">
-                <div class="container">
+                <div class="container-fluid">
                     <?php include_once 'section.php'; ?>
                 </div>
             </main>

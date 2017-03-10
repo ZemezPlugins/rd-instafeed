@@ -71,6 +71,11 @@ h5 {
   line-height: 1.7;
   margin-top: 40px;
   margin-bottom: 20px;
+
+}
+
+h5 .small{
+  font-size: 60%
 }
 @media (max-width: 479px) {
   h5 {
@@ -265,6 +270,10 @@ code {
 
 .center {
   text-align: center;
+}
+
+.text-bold{
+  font-weight: 700;
 }
 
 /*=======================================================
@@ -720,6 +729,10 @@ body.navbar-fixed {
   .rd-mobilepanel_title {
     font-size: 18px;
   }
+}
+
+.container-fluid{
+  padding: 0 15px;
 }
 /*==================== Stuck ====================*/
 .stuck {

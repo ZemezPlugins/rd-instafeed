@@ -321,7 +321,7 @@ p + p{
 .well-xs {
   padding-top: 30px;
   padding-bottom: 30px;
-  @media (min-width: $screen-sm-min) {
+  @media (min-width: $screen-md-min) {
     padding-top: 50px;
     padding-bottom: 50px;
   }
@@ -428,6 +428,17 @@ html body .page { // Increases specificity to use with background helpers
   }
 }
 
+.list-inline { 
+  margin-left: -10px;
+  margin-right: -10px;
+
+  > li {
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
 
 /*
 * @subsection   Marked List
@@ -531,6 +542,134 @@ html body .page { // Increases specificity to use with background helpers
       min-width: 80px;
     }
   }
+}
+
+
+/*
+* @subsection   instafeed
+*/
+
+.thumbnail-instafeed{ 
+  display: block;
+  position: relative;
+  margin-top: 20px;
+  box-shadow: 0 0 2px rgba(166, 169, 172, 0.07), 2px 3px 8px 0px rgba(166, 169, 172, 0.17);
+  background: #fff;
+  border: 15px solid #fff;
+
+  overflow: hidden;
+
+  padding-bottom: 78%;
+  overflow: hidden;
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 1800px) {
+    padding-bottom: 91%;
+  }
+
+  > a{
+    position: absolute;
+  }
+
+  .caption-share-buttons{
+    margin-top: 10px;
+
+    a{
+      display: inline-block;
+          margin: 0 2px;
+    }
+    img{
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  .caption{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    flex-direction: column;
+
+    padding: 5px 10px;
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    background: radial-gradient(circle farthest-corner at 32% 106%, 
+      rgba(255, 225, 125, 1) 0%, 
+      rgba(255, 205, 105, 1) 10%, 
+      rgba(250, 145, 55, 1) 28%, 
+      rgba(235, 65, 65, 1) 42%, transparent 82%), 
+    linear-gradient(135deg, 
+      rgba(35, 75, 215, 1) 12%, 
+      rgba(195, 60, 190, 1) 58%);
+    background: radial-gradient(circle farthest-corner at 32% 106%, 
+      rgba(255, 225, 125, .64) 0%, 
+      rgba(255, 205, 105, .64) 10%, 
+      rgba(250, 145, 55, .64) 28%, 
+      rgba(235, 65, 65, .64) 42%, transparent 82%), 
+    linear-gradient(135deg, 
+      rgba(35, 75, 215, .64) 12%, 
+      rgba(195, 60, 190, .64) 58%);
+    color: #fff;
+    transform: scale(1.1);
+
+    text-align: center;
+
+    opacity: 0;
+    transition: .3s ease-in-out;
+
+    &:hover{
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .list-inline{
+      margin-top: 6px;
+    }
+
+    &:before{
+      font-family: 'FontAwesome';
+      content: '\f16d';
+
+      display: block;
+      margin-bottom: 6px;
+
+      font-size: 24px;
+      color: rgba($white, .45); 
+    }
+  }
+
+  [data-likes-count],
+  [data-comments-count]{
+    &:before{
+      display: inline-block;
+      margin-right: 6px;
+      font-family: 'FontAwesome'
+    }
+  }
+
+
+  [data-likes-count]{
+    &:before{
+      content: '\f087';
+    }
+  }
+
+  [data-comments-count]{
+    &:before{
+      content: '\f27b';
+    }
+  }
+    
 }
 
 
@@ -675,7 +814,7 @@ aside{
     width: 75%;
     margin: 0 auto;
   }
-  @media (min-width: $screen-sm-min) {
+  @media (min-width: $screen-md-min) {
     float: left;
     width: 300px;
     padding: 0 10px;
