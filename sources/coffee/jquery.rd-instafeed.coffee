@@ -1,7 +1,7 @@
 ###*
  * @module       jQuery RD Instafeed
  * @author       Rafael Shayvolodyan(raffa)
- * @version      1.0.2
+ * @version      1.2.0
 ###
 (($, document, window) ->
 
