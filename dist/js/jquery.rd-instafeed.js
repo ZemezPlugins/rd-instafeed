@@ -1,8 +1,8 @@
 /**
- * @module       jQuery RD Instafeed
- * @author       Rafael Shayvolodyan(raffa)
- * @version      1.2.0
- */
+* @module       jQuery RD Instafeed
+* @author       Rafael Shayvolodyan(raffa)
+* @version      1.2.1
+*/
 
 (function() {
   (function($, document, window) {
@@ -22,11 +22,11 @@
        * @public
        */
       RDInstafeed.prototype.Defaults = {
-        accessToken: '3229350923.ba4c844.4f02100c368f4df7a4139183800edf26',
-        clientId: '641b85f46ee943acb06c8180f7e522f7',
+        accessToken: '',
+        clientId: '',
         get: 'user',
         tagName: 'awesome',
-        userId: '3229350923',
+        userId: '',
         locationId: '',
         sortBy: 'most-recent',
         useHttp: false,
@@ -72,14 +72,15 @@
 
 
       /**
-      * Get Data from Instagram
-      * @protected
-      * @param {String} url - Instagram url.
-      * @param {Array} imageArr - Instagram image array (for pagination).
+       * Get Data from Instagram
+       * @protected
+       * @param {String} url - Instagram url.
+       * @param {Array} imageArr - Instagram image array (for pagination).
        */
 
       RDInstafeed.prototype.fetchData = function(ctx, url, imageArr) {
         var get;
+        console.log(url);
         get = ctx.element.getAttribute('data-instafeed-get') ? ctx.element.getAttribute('data-instafeed-get') : ctx.options.get;
         $.ajax({
           type: "GET",
@@ -99,6 +100,8 @@
               ctx.nextUrl = response.pagination.next_url;
             }
 
+            console.log(response);
+
             if (get !== 'profile') {
 
               imagesRequested = parseInt(ctx.$items.length, 10);
@@ -108,7 +111,7 @@
                 images = images.slice(0, imagesRequested);
                 ctx.validate(ctx, response);
                 showLog = ctx.element.getAttribute('data-instafeed-showlog') ? ctx.element.getAttribute('data-instafeed-showlog') : ctx.options.showLog;
-                if (showLog === 'true') {
+                if (showLog === 'false') {
                   console.log(images);
                 }
 
@@ -136,7 +139,7 @@
             } else {
               ctx.validate(ctx, response);
               showLog = ctx.element.getAttribute('data-instafeed-showlog') ? ctx.element.getAttribute('data-instafeed-showlog') : ctx.options.showLog;
-              if (showLog === 'true') {
+              if (showLog === 'false') {
                 console.log(images);
               }
               return ctx.loopData(images);
@@ -147,9 +150,9 @@
 
 
       /**
-      * Validate json object.
-      * @protected
-      * @param {JSON Object} response - response from instagram.
+       * Validate json object.
+       * @protected
+       * @param {JSON Object} response - response from instagram.
        */
 
       RDInstafeed.prototype.validate = function(ctx, response) {
@@ -181,9 +184,9 @@
 
 
       /**
-      * Sorting Instagram images
-      * @protected
-      * @param {Array} response - Instagram images.
+       * Sorting Instagram images
+       * @protected
+       * @param {Array} response - Instagram images.
        */
 
       RDInstafeed.prototype.sorting = function(ctx, response) {
@@ -223,9 +226,9 @@
 
 
       /**
-      * Loop html elements for attribute parsing
-      * @protected
-      * @param {Array} data - Instagram images.
+       * Loop html elements for attribute parsing
+       * @protected
+       * @param {Array} data - Instagram images.
        */
 
       RDInstafeed.prototype.loopData = function(data) {
@@ -280,10 +283,10 @@
 
 
       /**
-      * Checks for the presence of an element attribute
-      * @protected
-      * @param {DOM Element Object} el - HTML element.
-      * @param {String} attribute - attribute name.
+       * Checks for the presence of an element attribute
+       * @protected
+       * @param {DOM Element Object} el - HTML element.
+       * @param {String} attribute - attribute name.
        */
 
       RDInstafeed.prototype.checkAttribute = function(el, attribute) {
@@ -300,11 +303,11 @@
 
 
       /**
-      * Parse element attributes and replace it
-      * @protected
-      * @param {DOM Element Object} el - HTML element.
-      * @param {JSON Object} json - attribute name.
-      * @param {Integer} index - index for likes, comments, locations.
+       * Parse element attributes and replace it
+       * @protected
+       * @param {DOM Element Object} el - HTML element.
+       * @param {JSON Object} json - attribute name.
+       * @param {Integer} index - index for likes, comments, locations.
        */
 
       RDInstafeed.prototype.parseAttributes = function(el, json, index) {
@@ -369,9 +372,9 @@
 
 
       /**
-      * Convert Array to String
-      * @protected
-      * @param {Array} arr.
+       * Convert Array to String
+       * @protected
+       * @param {Array} arr.
        */
 
       RDInstafeed.prototype.arrToString = function(arr) {
@@ -380,10 +383,10 @@
 
 
       /**
-      * Formatting Date
-      * @protected
-      * @param {Number} time - Instagram date.
-      * @param {Boolean} datetime - if true, formatting for datetime attribute.
+       * Formatting Date
+       * @protected
+       * @param {Number} time - Instagram date.
+       * @param {Boolean} datetime - if true, formatting for datetime attribute.
        */
 
       RDInstafeed.prototype.dating = function(time, datetime) {
@@ -404,7 +407,7 @@
         if (datetime) {
           datef = '%Y-%m-%d';
         } else {
-          datef = element.getAttribute('data-instafeed-date-format') ? element.getAttribute('data-instafeed-date-format') : this.options.dateFormat.days;
+          datef = this.element.getAttribute('data-instafeed-date-format') ? this.element.getAttribute('data-instafeed-date-format') : this.options.dateFormat.days;
         }
         if (delta < 60) {
           return this.options.dateFormat.seconds;
@@ -430,11 +433,11 @@
 
 
       /**
-      * Sort Data
-      * @protected
-      * @param {data} time - data for sorting.
-      * @param {Object} property
-      * @param {Boolean} reverse
+       * Sort Data
+       * @protected
+       * @param {data} time - data for sorting.
+       * @param {Object} property
+       * @param {Boolean} reverse
        */
 
       RDInstafeed.prototype.sortBy = function(data, property, reverse) {
@@ -462,10 +465,10 @@
 
 
       /**
-      * Access an object property by string
-      * @protected
-      * @param {object} Object.
-      * @param {String} property
+       * Access an object property by string
+       * @protected
+       * @param {object} Object.
+       * @param {String} property
        */
 
       RDInstafeed.prototype.getObjectProperty = function(object, property) {
@@ -485,8 +488,8 @@
 
 
       /**
-      * Build Url for getting data via function fetchData
-      * @protected
+       * Build Url for getting data via function fetchData
+       * @protected
        */
 
       RDInstafeed.prototype.buildUrl = function() {
@@ -543,8 +546,8 @@
 
 
       /**
-      * Generate a unique key
-      * @protected
+       * Generate a unique key
+       * @protected
        */
 
       RDInstafeed.prototype.genKey = function() {
@@ -557,8 +560,8 @@
 
 
       /**
-      * Filter out images
-      * @protected
+       * Filter out images
+       * @protected
        */
 
       RDInstafeed.prototype.filter = function(images, filter) {
