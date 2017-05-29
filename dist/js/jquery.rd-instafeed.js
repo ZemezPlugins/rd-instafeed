@@ -1,7 +1,7 @@
 /**
 * @module       jQuery RD Instafeed
 * @author       Rafael Shayvolodyan(raffa)
-* @version      1.2.1
+* @version      1.2.2
 */
 
 (function() {
@@ -22,11 +22,11 @@
        * @public
        */
       RDInstafeed.prototype.Defaults = {
-        accessToken: '',
-        clientId: '',
+        accessToken: '5526956400.ba4c844.c832b2a554764bc8a1c66c39e99687d7',
+        clientId: ' c832b2a554764bc8a1c66c39e99687d7',
+        userId: '5526956400',
         get: 'user',
         tagName: 'awesome',
-        userId: '',
         locationId: '',
         sortBy: 'most-recent',
         useHttp: false,
